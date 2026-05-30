@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ count: count ?? 1 })
   } catch (err: unknown) {
-    const msg = err instanceof Error ? err.message : String(err)
+    const msg = JSON.stringify(err)
     console.error('Waitlist error:', msg)
     return NextResponse.json({ error: msg }, { status: 500 })
   }

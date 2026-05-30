@@ -32,9 +32,10 @@ export async function POST(req: NextRequest) {
       .select('*', { count: 'exact', head: true })
 
     return NextResponse.json({ count: count ?? 1 })
-  } catch (err) {
-    console.error(err)
-    return NextResponse.json({ error: 'Errore server' }, { status: 500 })
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err)
+    console.error('Waitlist error:', msg)
+    return NextResponse.json({ error: msg }, { status: 500 })
   }
 }
 

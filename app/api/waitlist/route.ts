@@ -1,15 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { writeFile, readFile } from 'fs/promises'
-import path from 'path'
+import { createClient } from '@supabase/supabase-js'
 
-const DB = path.join(process.cwd(), 'waitlist.json')
-
-async function load(): Promise<string[]> {
-  try {
-    return JSON.parse(await readFile(DB, 'utf-8'))
-  } catch {
-    return []
-  }
+function getSupabase() {
+  const url  = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const key  = process.env.SUPABASE_SERVICE_ROLE_KEY
+  if (!url || !key) throw new Error('Supabase env vars mancanti')
+  return createClient(url, key)
 }
 
 export async function POST(req: NextRequest) {
@@ -19,17 +15,37 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Email non valida' }, { status: 400 })
   }
 
-  const emails = await load()
+  try {
+    const supabase = getSupabase()
 
-  if (!emails.includes(email)) {
-    emails.push(email)
-    await writeFile(DB, JSON.stringify(emails, null, 2))
+    const { error } = await supabase
+      .from('waitlist')
+      .insert({ email })
+
+    if (error && error.code !== '23505') {
+      // 23505 = duplicate, non è un errore reale
+      throw error
+    }
+
+    const { count } = await supabase
+      .from('waitlist')
+      .select('*', { count: 'exact', head: true })
+
+    return NextResponse.json({ count: count ?? 1 })
+  } catch (err) {
+    console.error(err)
+    return NextResponse.json({ error: 'Errore server' }, { status: 500 })
   }
-
-  return NextResponse.json({ count: emails.length })
 }
 
 export async function GET() {
-  const emails = await load()
-  return NextResponse.json({ count: emails.length })
+  try {
+    const supabase = getSupabase()
+    const { count } = await supabase
+      .from('waitlist')
+      .select('*', { count: 'exact', head: true })
+    return NextResponse.json({ count: count ?? 0 })
+  } catch {
+    return NextResponse.json({ count: 0 })
+  }
 }

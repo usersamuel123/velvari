@@ -26,7 +26,8 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://velvari.it'),
   title: 'Velvari — Where cars find those who deserve them.',
-  description: 'La prima piattaforma italiana per aste di automobili straordinarie. Curata. Precisa. Italiana.',
+  description: 'Velvari è la prima piattaforma italiana per aste di automobili straordinarie. Compra e vendi auto d\'epoca e selezionate online. Curata. Precisa. Italiana.',
+  keywords: ['aste auto italia', 'comprare auto d\'epoca', 'vendere auto usata', 'marketplace auto italiane', 'aste online auto', 'auto classiche italia', 'velvari'],
   icons: {
     icon: [{ url: '/logo.png', type: 'image/png' }],
     apple: [{ url: '/logo.png' }],
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
     description: 'Where cars find those who deserve them.',
     images: ['/logo.png'],
   },
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
 }
 
 const jsonLd = {

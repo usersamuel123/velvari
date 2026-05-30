@@ -3,12 +3,13 @@
 import { useState } from 'react'
 
 export default function WaitlistForm() {
-  const [email, setEmail]   = useState('')
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [email, setEmail]     = useState('')
+  const [consent, setConsent] = useState(false)
+  const [status, setStatus]   = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!email.trim()) return
+    if (!email.trim() || !consent) return
 
     setStatus('loading')
     try {
@@ -59,9 +60,23 @@ export default function WaitlistForm() {
             spellCheck={false}
             inputMode="email"
           />
-          <button type="submit" className="submit-btn" disabled={status === 'loading'} aria-label="Iscriviti">
+          <button type="submit" className="submit-btn" disabled={status === 'loading' || !consent} aria-label="Iscriviti">
             {status === 'loading' ? '···' : '→'}
           </button>
+        </div>
+        <div className="consent-wrap">
+          <input
+            type="checkbox"
+            id="consent"
+            className="consent-checkbox"
+            checked={consent}
+            onChange={e => setConsent(e.target.checked)}
+            required
+          />
+          <label htmlFor="consent" className="consent-label">
+            Acconsento al trattamento dei miei dati personali per ricevere la notifica di lancio.{' '}
+            <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+          </label>
         </div>
         {status === 'error' && <p className="form-error">Riprova tra qualche secondo.</p>}
       </form>

@@ -40,22 +40,9 @@ export default function Home() {
       <footer className="footer">
         <span className="footer-copy">© 2026 Velvari · Italia</span>
         <div className="footer-links">
-          <a
-            href="https://instagram.com/velvari"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="footer-link"
-          >
-            Instagram
-          </a>
-          <a
-            href="https://tiktok.com/@velvari"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="footer-link"
-          >
-            TikTok
-          </a>
+          <a href="https://instagram.com/velvari" target="_blank" rel="noopener noreferrer" className="footer-link">Instagram</a>
+          <a href="https://tiktok.com/@velvari" target="_blank" rel="noopener noreferrer" className="footer-link">TikTok</a>
+          <a href="/privacy" className="footer-link">Privacy</a>
         </div>
       </footer>
 

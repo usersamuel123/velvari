@@ -65,8 +65,7 @@ const jsonLd = {
   logo: 'https://velvari.it/logo.png',
   description: 'La prima piattaforma italiana per aste di automobili straordinarie.',
   sameAs: [
-    'https://instagram.com/velvari',
-    'https://tiktok.com/@velvari',
+    'https://tiktok.com/@velvaricars',
   ],
 }
 

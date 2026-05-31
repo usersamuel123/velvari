@@ -9,12 +9,12 @@ export default function Home() {
         <div className="nav-right">
           <span className="nav-label">Coming Soon</span>
           <a
-            href="https://instagram.com/velvari"
+            href="https://tiktok.com/@velvaricars"
             target="_blank"
             rel="noopener noreferrer"
             className="nav-link"
           >
-            @velvari
+            @velvaricars
           </a>
         </div>
       </nav>
@@ -40,8 +40,7 @@ export default function Home() {
       <footer className="footer">
         <span className="footer-copy">© 2026 Velvari · Italia</span>
         <div className="footer-links">
-          <a href="https://instagram.com/velvari" target="_blank" rel="noopener noreferrer" className="footer-link">Instagram</a>
-          <a href="https://tiktok.com/@velvari" target="_blank" rel="noopener noreferrer" className="footer-link">TikTok</a>
+          <a href="https://tiktok.com/@velvaricars" target="_blank" rel="noopener noreferrer" className="footer-link">TikTok</a>
           <a href="/privacy" className="footer-link">Privacy</a>
         </div>
       </footer>

@@ -4,4 +4,8 @@
   <url><loc>https://velvari.com/dash-cam.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://velvari.com/mini-compressore.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://velvari.com/supporto-smartphone.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://velvari.com/chi-siamo.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://velvari.com/contatti.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://velvari.com/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://velvari.com/cookie-policy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>

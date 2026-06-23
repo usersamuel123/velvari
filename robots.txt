@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://velvari.com/sitemap.xml

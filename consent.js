@@ -71,10 +71,19 @@
   }
 })();
 
-/* AutoSceltaGiusta — credito sviluppo (Levarisup), inserito in fondo a ogni pagina */
+/* AutoSceltaGiusta — credito sviluppo (Levarisup) + rimando Telegram, in fondo a ogni pagina */
 (function () {
   function addCredit() {
     var fine = document.querySelector("footer.site .fine");
+    if (fine && !fine.querySelector(".tg-cta")) {
+      var t = document.createElement("p");
+      t.className = "tg-cta";
+      t.style.margin = "10px 0 4px";
+      t.innerHTML = '<a href="https://t.me/autosceltagiusta" target="_blank" rel="noopener" ' +
+        'style="display:inline-block;padding:8px 16px;border-radius:999px;background:#229ED9;' +
+        'color:#fff;font-weight:600;text-decoration:none;">📢 Offerte del giorno su Telegram &rarr;</a>';
+      fine.appendChild(t);
+    }
     if (fine && !fine.querySelector(".credit")) {
       var p = document.createElement("p");
       p.className = "credit";

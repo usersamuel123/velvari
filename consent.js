@@ -80,8 +80,8 @@
       t.className = "tg-cta";
       t.style.margin = "10px 0 4px";
       t.innerHTML = '<a href="https://t.me/autosceltagiusta" target="_blank" rel="noopener" ' +
-        'style="display:inline-block;padding:8px 16px;border-radius:999px;background:#229ED9;' +
-        'color:#fff;font-weight:600;text-decoration:none;">📢 Offerte del giorno su Telegram &rarr;</a>';
+        'style="display:inline-block;padding:8px 16px;border-radius:999px;background:#1565a0;' +
+        'color:#fff;font-weight:700;text-decoration:none;">📢 Offerte del giorno su Telegram &rarr;</a>';
       fine.appendChild(t);
     }
     if (fine && !fine.querySelector(".credit")) {
@@ -95,4 +95,38 @@
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", addCredit);
   else addCredit();
+})();
+
+/* AutoSceltaGiusta — accessibilità: landmark <main> + ordine dei titoli (fix Lighthouse) */
+(function () {
+  function a11y() {
+    // 1) Landmark principale: avvolge il contenuto tra header e footer in un <main>
+    if (!document.querySelector("main")) {
+      var header = document.querySelector("header.site");
+      var footer = document.querySelector("footer.site");
+      if (header && footer && header.parentNode === footer.parentNode) {
+        var main = document.createElement("main");
+        var n = header.nextSibling;
+        while (n && n !== footer) { var nx = n.nextSibling; main.appendChild(n); n = nx; }
+        footer.parentNode.insertBefore(main, footer);
+      }
+    }
+    // 2) Stile per mantenere identico l'aspetto dei titoli del footer una volta portati a h3
+    if (!document.getElementById("asg-a11y-style")) {
+      var st = document.createElement("style");
+      st.id = "asg-a11y-style";
+      st.textContent = "footer.site h3{font-family:-apple-system,Segoe UI,Roboto,sans-serif;color:var(--txt);font-size:.93rem;margin:0 0 11px;font-weight:700}";
+      document.head.appendChild(st);
+    }
+    // 3) Evita il salto di livello (h2 -> h4): porta gli heading del footer a h3
+    var fh = document.querySelectorAll("footer.site h4");
+    for (var i = 0; i < fh.length; i++) {
+      var h = fh[i], n3 = document.createElement("h3");
+      n3.className = h.className;
+      n3.innerHTML = h.innerHTML;
+      h.parentNode.replaceChild(n3, h);
+    }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", a11y);
+  else a11y();
 })();

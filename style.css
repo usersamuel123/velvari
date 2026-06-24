@@ -187,3 +187,19 @@ footer.site .fine{border-top:1px solid var(--line);padding-top:16px;line-height:
 .cookiebar .accept{background:var(--btn);color:#fff;border-color:var(--btn)}
 .cookiebar .reject{background:transparent;color:var(--txt)}
 @media(max-width:600px){.cookiebar{flex-direction:column;align-items:stretch;text-align:center}.cookiebar .actions{justify-content:center}}
+
+/* ---- Product review block ---- */
+.product{display:grid;grid-template-columns:210px 1fr;gap:22px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin:22px 0}
+.product .media{align-self:start}
+.imgslot{border:1px dashed var(--line-strong);border-radius:var(--radius);min-height:170px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--muted-2);font-size:.78rem;padding:12px;background:var(--bg-soft)}
+.imgslot img{max-width:100%;height:auto;border-radius:6px}
+.product .ptier{display:inline-block;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;font-weight:700;color:var(--ok);margin-bottom:6px;font-family:-apple-system,Segoe UI,sans-serif}
+.product h3{margin:.1em 0 .3em;font-size:1.25rem}
+.product .verdict{color:var(--muted);font-style:italic;margin:.2em 0 .8em}
+.product .specs{font-size:.84rem;color:var(--muted-2);margin:.2em 0 1em}
+.procon{display:flex;gap:26px;flex-wrap:wrap;margin:.4em 0 1.1em}
+.procon h4{margin:0 0 .25em;font-size:.82rem;font-family:-apple-system,Segoe UI,sans-serif;text-transform:uppercase;letter-spacing:.05em}
+.procon ul{margin:.1em 0;padding-left:1.1em;font-size:.95rem}
+.procon .pros li{color:#bfe6cf}
+.procon .cons li{color:#ecc7c7}
+@media(max-width:600px){.product{grid-template-columns:1fr}}

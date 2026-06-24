@@ -70,3 +70,20 @@
     init();
   }
 })();
+
+/* AutoSceltaGiusta — credito sviluppo (Levarisup), inserito in fondo a ogni pagina */
+(function () {
+  function addCredit() {
+    var fine = document.querySelector("footer.site .fine");
+    if (fine && !fine.querySelector(".credit")) {
+      var p = document.createElement("p");
+      p.className = "credit";
+      p.style.marginTop = "6px";
+      p.style.opacity = "0.9";
+      p.innerHTML = 'Design by <a href="https://levarisup.com/" target="_blank" rel="noopener">Levarisup</a>';
+      fine.appendChild(p);
+    }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", addCredit);
+  else addCredit();
+})();

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://velvari.com/sitemap.xml
+Sitemap: https://velvari.it/sitemap.xml

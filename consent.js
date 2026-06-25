@@ -100,7 +100,6 @@
 /* AutoSceltaGiusta — accessibilità: landmark <main> + ordine dei titoli (fix Lighthouse) */
 (function () {
   function a11y() {
-    // 1) Landmark principale: avvolge il contenuto tra header e footer in un <main>
     if (!document.querySelector("main")) {
       var header = document.querySelector("header.site");
       var footer = document.querySelector("footer.site");
@@ -111,14 +110,12 @@
         footer.parentNode.insertBefore(main, footer);
       }
     }
-    // 2) Stile per mantenere identico l'aspetto dei titoli del footer una volta portati a h3
     if (!document.getElementById("asg-a11y-style")) {
       var st = document.createElement("style");
       st.id = "asg-a11y-style";
       st.textContent = "footer.site h3{font-family:-apple-system,Segoe UI,Roboto,sans-serif;color:var(--txt);font-size:.93rem;margin:0 0 11px;font-weight:700}";
       document.head.appendChild(st);
     }
-    // 3) Evita il salto di livello (h2 -> h4): porta gli heading del footer a h3
     var fh = document.querySelectorAll("footer.site h4");
     for (var i = 0; i < fh.length; i++) {
       var h = fh[i], n3 = document.createElement("h3");
@@ -129,4 +126,15 @@
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", a11y);
   else a11y();
+})();
+
+/* AutoSceltaGiusta — statistiche anonime SENZA cookie (Vercel Web Analytics).
+   Non imposta cookie e non raccoglie dati personali identificabili: per il GDPR
+   non richiede consenso, quindi viene caricato sempre. */
+(function () {
+  if (window.__asgVA) return; window.__asgVA = true;
+  var s = document.createElement("script");
+  s.defer = true;
+  s.src = "/_vercel/insights/script.js";
+  document.head.appendChild(s);
 })();

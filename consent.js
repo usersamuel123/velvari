@@ -128,6 +128,41 @@
   else a11y();
 })();
 
+/* AutoSceltaGiusta — internal linking: blocco "Tutte le guide" nel footer di ogni pagina */
+(function () {
+  var GUIDE = [
+    ["dash-cam.html", "Migliori dash cam"],
+    ["come-scegliere-dash-cam.html", "Come scegliere una dash cam"],
+    ["dash-cam-legale-italia.html", "Dash cam: è legale?"],
+    ["microsd-dash-cam.html", "MicroSD per dash cam"],
+    ["mini-compressore.html", "Mini compressori"],
+    ["pressione-gomme-auto.html", "Pressione gomme"],
+    ["come-gonfiare-gomme.html", "Come gonfiare le gomme"],
+    ["supporto-smartphone.html", "Supporti smartphone"],
+    ["supporto-magnetico-o-bocchette.html", "Magnetico o a bocchette"],
+    ["telefono-alla-guida-multa.html", "Telefono alla guida"],
+    ["accessori-auto-utili.html", "Accessori auto utili"]
+  ];
+  function moreGuides() {
+    var wrap = document.querySelector("footer.site .wrap");
+    var fine = wrap && wrap.querySelector(".fine");
+    if (!wrap || !fine || wrap.querySelector(".more-guides")) return;
+    var cur = (location.pathname.split("/").pop() || "index.html");
+    var parts = [];
+    for (var i = 0; i < GUIDE.length; i++) {
+      if (GUIDE[i][0] === cur) continue;
+      parts.push('<a href="' + GUIDE[i][0] + '" style="color:var(--link);text-decoration:none;">' + GUIDE[i][1] + '</a>');
+    }
+    var div = document.createElement("div");
+    div.className = "more-guides";
+    div.style.cssText = "margin:6px 0 16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);font-size:.84rem;color:var(--muted-2);line-height:2";
+    div.innerHTML = '<strong style="color:var(--muted);">Tutte le guide:</strong> ' + parts.join(' &middot; ');
+    wrap.insertBefore(div, fine);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", moreGuides);
+  else moreGuides();
+})();
+
 /* AutoSceltaGiusta — statistiche anonime SENZA cookie (Vercel Web Analytics).
    Non imposta cookie e non raccoglie dati personali identificabili: per il GDPR
    non richiede consenso, quindi viene caricato sempre. */
